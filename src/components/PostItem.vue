@@ -11,12 +11,8 @@
 </template>
 
 <script>
-import MyButton from "@/components/UI/MyButton.vue";
-
 export default {
-  components: {
-    MyButton,
-  },
+  components: {},
   props: {
     post: {
       type: Object,
