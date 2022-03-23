@@ -8,24 +8,28 @@
       <post-form @create="createPost" />
     </my-dialog>
 
-    <post-list :posts="posts" @removePost="removePost" />
+    <post-list v-if="!isPostLoading" :posts="posts" @removePost="removePost" />
+    <div v-else><post-loading /></div>
   </div>
 </template>
 
 <script>
 import PostForm from "@/components/PostForm.vue";
 import PostList from "@/components/PostList.vue";
+import PostLoading from "@/components/PostLoading.vue";
 import axios from "axios";
 
 export default {
   components: {
     PostForm,
     PostList,
+    PostLoading,
   },
   data() {
     return {
       posts: [],
-      dialogVisible: false,
+      dialogVisible: null,
+      isPostLoading: false,
     };
   },
   methods: {
@@ -41,10 +45,14 @@ export default {
     },
     async fetchPosts() {
       try {
-        const response = await axios.get(
-          "https://jsonplaceholder.typicode.com/posts?_limit=10"
-        );
-        this.posts = response.data;
+        this.isPostLoading = true;
+        setTimeout(async () => {
+          const response = await axios.get(
+            "https://jsonplaceholder.typicode.com/posts?_limit=10"
+          );
+          this.posts = response.data;
+          this.isPostLoading = false;
+        }, 2000);
       } catch (error) {
         alert("error api");
       }
