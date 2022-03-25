@@ -3,7 +3,9 @@
     <h1>Страница с постами</h1>
     <my-input v-model="searchQuery" placeholder="Поиск по названию" />
     <div class="app__btns">
-      <my-button @click="showDialog">Создать пост</my-button>
+      <my-button style="flex: 1; margin-right: 5px" @click="showDialog"
+        >Создать пост</my-button
+      >
       <my-select v-model="selectedSort" :options="sortOptions" />
     </div>
     <my-dialog v-model:show="dialogVisible">
