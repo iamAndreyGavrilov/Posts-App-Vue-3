@@ -1,6 +1,6 @@
 <template>
-  <select @change="changeOptions">
-    <option disabled selected value="">Выберите из списка</option>
+  <select :value="modelValue" @change="changeOptions">
+    <option disabled value="">Сортировка постов</option>
     <option v-for="option in options" :key="option.value" :value="option.value">
       {{ option.name }}
     </option>
@@ -11,9 +11,9 @@
 export default {
   name: "my-select",
   props: {
-    // modelValue: {
-    //   type: String,
-    // },
+    modelValue: {
+      type: String,
+    },
     options: {
       type: Array,
       default: () => [],
