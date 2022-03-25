@@ -5,9 +5,7 @@
 </template>
 
 <script>
-export default {
-  name: "post-loading",
-};
+export default {};
 </script>
 
 <style lang="scss">
