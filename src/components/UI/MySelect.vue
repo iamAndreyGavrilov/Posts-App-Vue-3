@@ -1,5 +1,5 @@
 <template>
-  <select :value="modelValue" @change="changeOptions">
+  <select class="select" :value="modelValue" @change="changeOptions">
     <option disabled value="">Сортировка постов</option>
     <option v-for="option in options" :key="option.value" :value="option.value">
       {{ option.name }}
@@ -27,4 +27,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.select {
+  border: 2px solid #64766a;
+  color: #64766a;
+}
+</style>
