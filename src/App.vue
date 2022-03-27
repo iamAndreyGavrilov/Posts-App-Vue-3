@@ -18,6 +18,7 @@
       @removePost="removePost"
     />
     <div v-else><post-loading /></div>
+    <page-list :page="page" @changePage="changePage" :totalPages="totalPages" />
   </div>
 </template>
 
@@ -25,6 +26,7 @@
 import PostForm from "@/components/PostForm.vue";
 import PostList from "@/components/PostList.vue";
 import PostLoading from "@/components/PostLoading.vue";
+import PageList from "@/components/PageList.vue";
 import axios from "axios";
 
 export default {
@@ -32,6 +34,7 @@ export default {
     PostForm,
     PostList,
     PostLoading,
+    PageList,
   },
   data() {
     return {
@@ -44,6 +47,9 @@ export default {
         { value: "body", name: "По содержанию" },
       ],
       searchQuery: "",
+      page: 1,
+      limit: 10,
+      totalPages: 0,
     };
   },
   methods: {
@@ -57,16 +63,28 @@ export default {
     showDialog() {
       this.dialogVisible = true;
     },
+    changePage(pageNumber) {
+      this.page = pageNumber;
+    },
     async fetchPosts() {
       try {
         this.isPostLoading = true;
         setTimeout(async () => {
           const response = await axios.get(
-            "https://jsonplaceholder.typicode.com/posts?_limit=10"
+            "https://jsonplaceholder.typicode.com/posts",
+            {
+              params: {
+                _page: this.page,
+                _limit: this.limit,
+              },
+            }
+          );
+          this.totalPages = Math.ceil(
+            response.headers["x-total-count"] / this.limit
           );
           this.posts = response.data;
           this.isPostLoading = false;
-        }, 2000);
+        }, 1000);
       } catch (error) {
         alert("error api");
       }
@@ -75,7 +93,11 @@ export default {
   mounted() {
     this.fetchPosts();
   },
-  watch: {},
+  watch: {
+    page() {
+      this.fetchPosts();
+    },
+  },
   computed: {
     sortedPosts() {
       return [...this.posts].sort((post1, post2) =>
