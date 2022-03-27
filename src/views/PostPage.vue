@@ -9,7 +9,7 @@
       <my-select v-model="selectedSort" :options="sortOptions" />
     </div>
     <my-dialog v-model:show="dialogVisible">
-      <post-form @create="createPost" />
+      <post-form @create="createPost" @close="closePost" />
     </my-dialog>
 
     <post-list
@@ -55,6 +55,9 @@ export default {
   methods: {
     createPost(post) {
       this.posts.unshift(post);
+      this.dialogVisible = false;
+    },
+    closePost() {
       this.dialogVisible = false;
     },
     removePost(post) {
