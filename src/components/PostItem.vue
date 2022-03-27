@@ -6,7 +6,10 @@
       <div style="margin-top: 5px">id:{{ post.id }}</div>
     </div>
     <div class="post__btns">
-      <my-button @click="$emit('removePost', post)">Удалить</my-button>
+      <my-button @click="$router.push(`/posts/${post.id}`)">Открыть</my-button>
+      <my-button style="margin-left: 5px" @click="$emit('removePost', post)"
+        >Удалить</my-button
+      >
     </div>
   </div>
 </template>
@@ -31,5 +34,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.post__btns {
+  display: flex;
 }
 </style>
