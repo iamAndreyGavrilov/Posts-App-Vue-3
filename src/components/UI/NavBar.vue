@@ -1,7 +1,6 @@
 <template>
   <div class="navbar">
-    <div>Навигация сайта</div>
-    <div class="navbar__btns">
+    <div>
       <my-button @click="$router.push('/')">Главная страница</my-button>
       <my-button
         @click="$router.push('/posts')"
@@ -22,9 +21,8 @@ export default {};
   display: flex;
   height: 50px;
   align-items: center;
+  justify-content: center;
   padding: 15px;
-}
-.navbar__btns {
-  margin-left: auto;
+  box-shadow: inset 0px -1px 0px 0px #64766f;
 }
 </style>

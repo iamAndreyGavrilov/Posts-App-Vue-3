@@ -38,6 +38,7 @@ export default {
   border: 1px solid #64766a;
   color: #64766a;
   padding: 10px;
+  cursor: pointer;
 }
 .current-page {
   border: 3px solid #64766a;
