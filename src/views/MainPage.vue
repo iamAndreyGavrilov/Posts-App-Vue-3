@@ -1,9 +1,6 @@
 <template>
-  <h1>MainPage</h1>
-  <p>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident,
-    consectetur.
-  </p>
+  <h1>Главная страница</h1>
+  <p>Основной контент находится на странице с постами</p>
 </template>
 
 <script>
