@@ -7,6 +7,9 @@
         style="margin: 0px 20px 0px 20px"
         >Страница с постами</my-button
       >
+      <my-button @click="$router.push('/store')" style="margin-right: 10px"
+        >Страница с постами на Vuex</my-button
+      >
       <my-button @click="$router.push('/about')">О сайте</my-button>
     </div>
   </div>
